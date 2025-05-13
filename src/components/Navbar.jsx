@@ -13,8 +13,9 @@ function Navbar() {
     setNav(!nav);
   }
   return (
-    <>
-      <div className="text-white flex items-center justify-center h-[2rem] bg-black text-[.8rem]">
+    
+    <div>
+       <div className="text-white flex items-center justify-center h-[2rem] bg-black text-[.8rem]">
         <p>
           Sign up and get 20% off your first order.{" "}
           <span className="underline hover:cursor-pointer">Sign Up Now</span>
@@ -90,7 +91,8 @@ function Navbar() {
           <li className="p-6 w-full border-b-1 border-[#313131cc]">Brands</li>
         </ul>
       </div>
-    </>
+    </div>
+     
   );
 }
 

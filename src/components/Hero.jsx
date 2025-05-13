@@ -1,14 +1,31 @@
 import React from "react";
 import image from "../assets/image.png";
 import CountUp from "react-countup";
+import Marquee from "react-fast-marquee";
+import calvin from "../assets/calvin.svg";
+import gucci from "../assets/gucci.svg";
+import zara from "../assets/zara.png";
+import prada from "../assets/prada.svg";
+import versace from "../assets/versace.svg";
 
 function Hero() {
   return (
-    <div className="bg-gray-100 overflow-x-hidden md:grid grid-cols-2 w-full">
+    <div className="w-full lg:max-h-screen ">
+      
+      <div className="bg-gray-100 overflow-x-hidden md:grid grid-cols-2 w-full">
       <div className="w-full flex flex-col items-center h-full md:items-start md:col-span-1">
-        <h1 className="text-7xl font-[Anton] xl:mt-8 mx-4 pt-6 ">
-          FIND CLOTHES THAT MATCHES YOUR STYLE
+        <div className="text-7xl font-[Anton] xl:mt-8 mx-4 pt-6">
+           <h1>
+          FIND CLOTHES
         </h1>
+        <h1>
+          THAT MATCHES
+        </h1>
+        <h1>
+          YOUR STYLE
+        </h1>
+        </div>
+       
         <p className="mx-4 pt-4">
           Browse through our diverse range of metriculously crafted germents,
           designed to bring out your individuality and cater to your sense of
@@ -58,7 +75,23 @@ function Hero() {
       <div className="w-full h-full flex justify-center">
         <img src={image} alt="" className="object-cover " />
       </div>
+      
+       
+      
+      
     </div>
+    <Marquee className="bg-black h-[5rem] flex items-center overflow-y-hidden w-full " gradient={false} pauseOnHover={true} speed={50}>
+
+      <img src={calvin} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
+      <img src={gucci} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
+      <img src={zara} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
+      <img src={prada} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
+      <img src={versace} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
+
+      </Marquee>
+    </div>
+     
+   
   );
 }
 

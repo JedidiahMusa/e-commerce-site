@@ -5,7 +5,6 @@ import sweater from "../assets/sweater.png";
 import vest from "../assets/vest.png";
 import jacket from "../assets/jacket.png";
 import jersey from "../assets/jersey.png";
-import { FaStarHalf, FaStar } from "react-icons/fa";
 
 function CardProps() {
   const cardData = [
@@ -49,13 +48,7 @@ function CardProps() {
 
   return (
     <div>
-      <div className="flex">
-        <FaStar color="gold" />
-        <FaStar color="gold" />
-        <FaStar color="gold" />
-        <FaStar color="gold" />
-        <FaStarHalf color="gold" />
-      </div>
+      
 
       <div className="flex items-center my-8 justify-center">
         <p className="font-bold text-4xl font-[Anton] ">NEW ARRIVALS</p>

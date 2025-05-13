@@ -1,7 +1,6 @@
 import React from "react"
 import Navbar from "./components/Navbar"
-import Hero from "./components/hero"
-import LogoCarousel from "./components/LogoCarousel"
+import Hero from "./components/Hero"
 import CardProps from "./components/CardProps"
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
     <div>
       <Navbar />
       <Hero />
-      <LogoCarousel />
       <CardProps />
     </div>
       
