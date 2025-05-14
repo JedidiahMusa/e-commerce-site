@@ -1,28 +1,38 @@
 import React, { useState } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import { IoIosSearch, IoMdClose } from "react-icons/io";
+import { IoIosSearch, IoMdClose, IoIosClose  } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 
 function Navbar() {
   const [nav, setNav] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+  function handleOpen(){
+    setIsOpen(!isOpen);
+  }
 
   function handleClick() {
     setNav(!nav);
   }
   return (
-    
-    <div>
-       <div className="text-white flex items-center justify-center h-[2rem] bg-black text-[.8rem]">
-        <p>
-          Sign up and get 20% off your first order.{" "}
+
+    <>
+         <div className={isOpen? "text-white flex items-center justify-center h-[2rem] bg-black text-[.8rem]": "hidden"}>
+
+        <p className="m-auto"> 
+          Sign up and get 20% off your first order.
           <span className="underline hover:cursor-pointer">Sign Up Now</span>
         </p>
+        <div className="ml-auto mr-2 ">
+        <IoIosClose onClick={handleOpen} className="cursor-pointer " size={23} />
+        </div>
       </div>
-      <nav className="w-[100%] h-18 flex sticky z-10 bg-white top-0 items-center justify-between ">
-        {/* nav-container */}
+
+      <nav className="w-full h-18 flex sticky top-0 z-30 bg-white items-center justify-between ">
+   
 
         <div className="flex items-center ease-in-out duration-500 md:ml-12 md:mr-4 justify-center h-full">
           {/* nav-logo */}
@@ -77,7 +87,7 @@ function Navbar() {
       <div
         className={
           nav
-            ? "flex w-[75%] ease-in-out duration-500 z-10 top-0 right-0 fixed bg-[#000000f6] h-full"
+            ? "flex w-[75%] ease-in-out duration-500 z-50 top-0 right-0 fixed bg-[#000000f6] h-full"
             : "hidden"
         }
       >
@@ -91,7 +101,9 @@ function Navbar() {
           <li className="p-6 w-full border-b-1 border-[#313131cc]">Brands</li>
         </ul>
       </div>
-    </div>
+   
+    </>
+  
      
   );
 }

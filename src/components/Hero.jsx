@@ -1,16 +1,11 @@
 import React from "react";
 import image from "../assets/image.png";
 import CountUp from "react-countup";
-import Marquee from "react-fast-marquee";
-import calvin from "../assets/calvin.svg";
-import gucci from "../assets/gucci.svg";
-import zara from "../assets/zara.png";
-import prada from "../assets/prada.svg";
-import versace from "../assets/versace.svg";
+
 
 function Hero() {
   return (
-    <div className="w-full lg:max-h-screen ">
+    <div className="w-full px-[1rem] bg-gray-100 md:px-[3rem] lg:px-[5rem] ">
       
       <div className="bg-gray-100 overflow-x-hidden md:grid grid-cols-2 w-full">
       <div className="w-full flex flex-col items-center h-full md:items-start md:col-span-1">
@@ -31,7 +26,7 @@ function Hero() {
           designed to bring out your individuality and cater to your sense of
           style
         </p>
-        <button className="flex w-[95%] p-4 items-center justify-center md:ml-4 md:w-[15rem] h-[3.5rem] my-6 rounded-4xl bg-black text-white ">
+        <button className="flex w-[95%] p-4 items-center justify-center md:ml-4 md:w-[15rem] h-[3rem] my-6 rounded-4xl bg-black text-white ">
           Shop Now
         </button>
         <div className="grid grid-cols-2 md:text-[.7rem] lg:text-[.9rem] gap-y-4 md:ml-4 md:grid-cols-3 md:gap-4 grid-rows-2 w-[95%]">
@@ -80,15 +75,7 @@ function Hero() {
       
       
     </div>
-    <Marquee className="bg-black h-[5rem] flex items-center overflow-y-hidden w-full " gradient={false} pauseOnHover={true} speed={50}>
-
-      <img src={calvin} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
-      <img src={gucci} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
-      <img src={zara} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
-      <img src={prada} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
-      <img src={versace} alt="" className=" object-cover mx-2 md:mx-4 bg-black" />
-
-      </Marquee>
+    
     </div>
      
    
