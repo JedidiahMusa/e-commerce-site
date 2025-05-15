@@ -5,11 +5,11 @@ import CountUp from "react-countup";
 
 function Hero() {
   return (
-    <div className="w-full px-[1rem] bg-gray-100 md:px-[3rem] lg:px-[5rem] ">
+    <div className="w-full px-[1rem] bg-gray-200 md:px-[3rem] lg:px-[5rem] ">
       
-      <div className="bg-gray-100 overflow-x-hidden md:grid grid-cols-2 w-full">
-      <div className="w-full flex flex-col items-center h-full md:items-start md:col-span-1">
-        <div className="text-7xl font-[Anton] xl:mt-8 mx-4 pt-6">
+      <div className="bg-gray-200 overflow-x-hidden md:grid grid-cols-2 w-full">
+      <div className="w-full flex flex-col  h-full md:items-start md:col-span-1">
+        <div className="text-4xl lg:text-6xl font-[Montserrat] font-extrabold xl:mt-8 mx-4 pt-6">
            <h1>
           FIND CLOTHES
         </h1>

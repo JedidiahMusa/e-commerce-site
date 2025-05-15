@@ -5,6 +5,7 @@ import Cards from "./components/Cards"
 import Browse from "./components/Browse"
 import MarqueeSec from "./components/MarqueeSec"
 import Feedback from "./components/Feedback"
+import Footer from "./components/Footer"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Cards />
       <Browse />
       <Feedback />
+      <Footer />
     </div>
       
     </>

@@ -50,7 +50,7 @@ function Navbar() {
             />
           )}
 
-          <h1 className="font-semibold font-[Anton] text-4xl">SHOP.CO</h1>
+          <h1 className="font-extrabold font-[Montserrat] text-4xl">SHOP.CO</h1>
         </div>
 
         <ul className="md:flex md:text-[.75rem] font-semibold w-[20rem] hidden items-center justify-evenly">

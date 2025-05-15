@@ -9,10 +9,17 @@ import hoodie from "../assets/hoodie.png";
 import ribbed from "../assets/ribbed.png";
 import jacket from "../assets/jacket.png";
 import jersey from "../assets/jersey.png";
+import stripes from "../assets/stripes.png";
+import colar from "../assets/colar.png";
+import jorts from "../assets/jorts.png";
+import baseball from "../assets/baseball.png";
+import retro from "../assets/retro.png";
+import sweatshort from "../assets/sweatshort.png";
 import { useState, useEffect } from "react";
 
 function Cards() {
   const [viewAll, setViewAll] = useState(false);
+  const [viewAll2, setViewAll2] = useState(false);
   const [cardsPerRow, setCardsPerRow] = useState(2);
   useEffect(() => {
     const updateCardsPerRow = () => {
@@ -65,6 +72,21 @@ function Cards() {
       title: "Jersey",
       price: "$70",
     },
+    {
+      img: baseball,
+      title: "Baseball Jersey",
+      price: "$79",
+    },
+    {
+      img: sweatshort,
+      title: "Sweat Short",
+      price: "$43",
+    },
+    {
+      img: retro,
+      title: "Retro Jersey",
+      price: "$90",
+    },
   ];
   const cardData2 = [
     {
@@ -83,19 +105,19 @@ function Cards() {
       price: "$130",
     },
     {
-      img: vest,
-      title: "Vest",
-      price: "$90",
+      img: colar,
+      title: "Colared Shirt",
+      price: "$230",
     },
     {
-      img: jacket,
-      title: "Jacket",
-      price: "$140",
+      img: stripes,
+      title: "Stripe Sweater",
+      price: "$120",
     },
     {
-      img: jersey,
-      title: "Jersey",
-      price: "$70",
+      img: jorts,
+      title: "Jorts",
+      price: "$55",
     },
   ];
   const [ratings, setRatings] = useState(Array(cardData.length).fill(0));
@@ -109,7 +131,7 @@ function Cards() {
     <>
       <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
         <div className="flex items-center my-8 justify-center">
-          <p className="font-bold text-4xl font-[Anton] ">NEW ARRIVALS</p>
+          <p className="font-extrabold text-4xl font-[Montserrat] ">NEW ARRIVALS</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
@@ -161,7 +183,7 @@ function Cards() {
             {viewAll ? "View Less" : "View More"}
           </button>
         </div>
-        <div className="h-[1.5px]  w-full bg-gray-300 "></div>
+        <div className="h-[1px] w-full bg-gray-300 "></div>
       </div>
       
 
@@ -171,11 +193,11 @@ function Cards() {
 
       <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
         <div className="flex items-center my-8 justify-center">
-          <p className="font-bold text-4xl font-[Anton] ">TOP SELLING</p>
+          <p className="font-extrabold text-4xl font-[Montserrat] ">TOP SELLING</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
-          {(viewAll ? cardData2 : cardData2.slice(0, cardsPerRow)).map(
+          {(viewAll2 ? cardData2 : cardData2.slice(0, cardsPerRow)).map(
             (card, index) => (
               <div key={index} className="h-full w-full">
                 <div className=" flex flex-col h-full ">
@@ -217,10 +239,10 @@ function Cards() {
 
         <div className="w-full my-8 flex justify-center">
           <button
-            onClick={() => setViewAll(!viewAll)}
+            onClick={() => setViewAll2(!viewAll2)}
             className="flex items-center font-semibold text-[.9rem] hover:border-gray-500 transition ease-in-out duration-300 hover:scale-105 justify-center p-2 w-[10rem] md:w-[12rem] border-1 border-gray-300 rounded-full"
           >
-            {viewAll ? "View Less" : "View More"}
+            {viewAll2 ? "View Less" : "View More"}
           </button>
         </div>
       </div>
