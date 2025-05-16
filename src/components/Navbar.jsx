@@ -34,19 +34,19 @@ function Navbar() {
       <nav className="w-full h-18 flex sticky top-0 z-30 bg-white items-center justify-between ">
    
 
-        <div className="flex items-center ease-in-out duration-500 md:ml-12 md:mr-4 justify-center h-full">
+        <div className="flex items-center transition ease-in-out duration-500 md:ml-12 md:mr-4 justify-center h-full">
           {/* nav-logo */}
           {!nav ? (
             <GiHamburgerMenu
               size={28}
               onClick={handleClick}
-              className="md:hidden ease-in-out duration-500 mx-2 mr-4"
+              className="md:hidden transition ease-in-out duration-1000 mx-2 mr-4"
             />
           ) : (
             <IoMdClose  
               size={32}
               onClick={handleClick}
-              className="md:hidden mx-2 ease-in-out duration-500 mr-4"
+              className="md:hidden transition mx-2 ease-in-out duration-1000 mr-4"
             />
           )}
 
@@ -87,7 +87,7 @@ function Navbar() {
       <div
         className={
           nav
-            ? "flex w-[75%] ease-in-out duration-500 z-50 top-0 right-0 fixed bg-[#000000f6] h-full"
+            ? "flex w-[75%] transition ease-in-out duration-1000  z-50 buttom-0 right-0 fixed bg-[#000000f6] h-fit"
             : "hidden"
         }
       >

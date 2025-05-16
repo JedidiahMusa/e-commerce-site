@@ -51,7 +51,7 @@ function Feedback() {
   ];
 
   return (
-    <div className="w-full px-4 md:px-12 lg:px-20 py-10">
+    <div className="w-full px-4 md:px-12 lg:px-20 py-10 ">
       {/* Header and arrows */}
       <div className="flex items-center justify-between mb-6">
         <p className="font-[Montserrat] font-extrabold text-3xl md:text-4xl">
@@ -60,15 +60,15 @@ function Feedback() {
         <div className="flex gap-3">
           <button
             onClick={() => sliderRef.current?.slickPrev()}
-            className="p-2 rounded-full bg-white shadow hover:bg-gray-100"
+            className="p-2 group"
           >
-            <FaArrowLeft />
+            <FaArrowLeft className="group-hover:scale-125 " size={22} />
           </button>
           <button
             onClick={() => sliderRef.current?.slickNext()}
-            className="p-2 rounded-full bg-white shadow hover:bg-gray-100"
+            className="p-2 group "
           >
-            <FaArrowRight />
+            <FaArrowRight className="group-hover:scale-125 " size={22} />
           </button>
         </div>
       </div>
@@ -77,7 +77,7 @@ function Feedback() {
       <Slider ref={sliderRef} {...settings}>
         {feedBackData.map((item, index) => (
           <div key={index} className="p-3">
-            <div className="border rounded-3xl h-[17rem] px-8 pt-8 border-gray-300 bg-white shadow-sm">
+            <div className="border hover:scale-105 transition ease-in-out duration-1000 rounded-3xl h-[17rem] px-8 pt-8 border-gray-300 bg-white shadow-sm">
               <Rating name="User Rating" readOnly value={ratings} size="small" />
               <p className="font-bold py-4 flex gap-2 items-center">
                 {item.name}
