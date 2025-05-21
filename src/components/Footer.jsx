@@ -1,4 +1,5 @@
 import React from "react";
+import { TfiEmail } from "react-icons/tfi";
 import {
   FaTwitter,
   FaApplePay,
@@ -24,11 +25,14 @@ function Footer() {
             STAY UP TO DATE ABOUT OUR LATEST OFFERS
           </p>
           <div className="w-full md:w-[35%]">
+            
             <input
               type="text"
               placeholder="Enter your email address"
-              className="bg-white w-full rounded-full text-[.9rem] px-6 p-3 placeholder-gray-400 mb-2"
-            />
+              className="bg-white w-full rounded-full text-[.9rem] px-6 p-3 placeholder-gray-400 relative mb-2"
+            />  
+            <TfiEmail className="absolute left-0 top-0 z-10  " />
+            
             <button
               className="bg-white text-[.9rem] rounded-full font-semibold text-black p-3 w-full"
               type="submit"

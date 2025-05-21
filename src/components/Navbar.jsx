@@ -20,7 +20,8 @@ function Navbar() {
   return (
 
     <>
-         <div className={isOpen? "text-white flex items-center justify-center h-[2rem] bg-black text-[.8rem]": "hidden"}>
+   
+         <div className={isOpen? "text-white flex items-center justify-center h-[2rem]  bg-black text-[.8rem]" : "hidden" }>
 
         <p className="m-auto"> 
           Sign up and get 20% off your first order.
@@ -31,7 +32,7 @@ function Navbar() {
         </div>
       </div>
 
-      <nav className="w-full h-18 flex sticky top-0 z-30 bg-white items-center justify-between ">
+      <nav className="w-full h-18 flex sticky top-0 z-30 bg-white items-center border-b-1 border-gray-200 justify-between ">
    
 
         <div className="flex items-center transition ease-in-out duration-500 md:ml-12 md:mr-4 justify-center h-full">
