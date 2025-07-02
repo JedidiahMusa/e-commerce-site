@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick-theme.css";
 function Feedback() {
   const sliderRef = useRef();
   const [ratings] = useState(5);
-
   const settings = {
     dots: false,
     slidesToShow: 3,
