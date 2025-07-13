@@ -24,7 +24,6 @@ function Cards() {
   useEffect(() => {
     const updateCardsPerRow = () => {
       const width = window.innerWidth;
-
       if (width >= 1024) {
         setCardsPerRow(5);
       } else if (width >= 768) {
