@@ -145,6 +145,7 @@ function Cards() {
                       className="object-contain group-hover:scale-125 transition ease-in-out duration-700 h-full w-full "
                     />
                   </div>
+                  
 
                   <div className="flex p-2 flex-col ">
                     <p className="font-bold ">{card.title}</p>
