@@ -3,10 +3,12 @@ import casual from "../assets/casual.png"
 import formal from "../assets/formal.png"
 import party from "../assets/party.png"
 import gym from "../assets/gym.png"
+import { Element } from 'react-scroll';
 
 function Browse() {
   return (
-    <div className='W-full p-[1rem] md:p-[3rem] mx-[1rem] md:mx-[3rem] lg:mx-[5rem] rounded-4xl bg-gray-200 '>
+    <Element name='browse'>
+      <div className='W-full p-[1rem] md:p-[3rem] mx-[1rem] md:mx-[3rem] lg:mx-[5rem] rounded-4xl bg-gray-200 '>
 
       <div className='w-full flex my-[2rem] text-center px-[1rem] justify-center '>
         <h2 className='font-[Montserrat] font-extrabold text-4xl '> 
@@ -51,6 +53,8 @@ function Browse() {
       </div>
       
     </div>
+    </Element>
+    
   )
 }
 

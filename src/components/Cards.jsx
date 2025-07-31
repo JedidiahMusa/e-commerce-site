@@ -16,6 +16,7 @@ import baseball from "../assets/baseball.png";
 import retro from "../assets/retro.png";
 import sweatshort from "../assets/sweatshort.png";
 import { useState, useEffect } from "react";
+import { Element } from 'react-scroll';
 
 function Cards() {
   const [viewAll, setViewAll] = useState(false);
@@ -128,7 +129,8 @@ function Cards() {
 
   return (
     <>
-      <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
+    <Element name="cards">
+        <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
         <div className="flex items-center my-8 justify-center">
           <p className="font-extrabold text-4xl font-[Montserrat] ">NEW ARRIVALS</p>
         </div>
@@ -246,6 +248,8 @@ function Cards() {
           </button>
         </div>
       </div>
+    </Element>
+    
     </>
   );
 }

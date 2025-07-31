@@ -1,14 +1,14 @@
-import React from "react";
 import image from "../assets/image.png";
 import CountUp from "react-countup";
+import { Element } from 'react-scroll';
 
 
 function Hero() {
   return (
-    <div className="w-full px-[1rem] bg-gray-200 md:px-[3rem] lg:px-[5rem] ">
-      
+    <Element name="home">
+      <div className="w-full relative pl-[1rem] bg-gray-200 md:pl-[3rem] lg:pl-[5rem] ">
       <div className="bg-gray-200 overflow-x-hidden md:grid grid-cols-2 w-full">
-      <div className="w-full flex flex-col  h-full md:items-start md:col-span-1">
+      <div className="w-full flex flex-col h-full md:items-start md:col-span-1">
         <div className="text-4xl lg:text-6xl font-[Montserrat] font-extrabold xl:mt-8 mx-4 pt-6">
            <h1>
           FIND CLOTHES
@@ -64,11 +64,11 @@ function Hero() {
             <p>Happy customers</p>
           </div>
         </div>
-        <div className="my-4 flex justify-center w-full "></div>
+        
       </div>
 
       <div className="w-full h-full flex justify-center">
-        <img src={image} alt="" className="object-cover " />
+        <img src={image} alt="" className="" />
       </div>
       
        
@@ -77,6 +77,8 @@ function Hero() {
     </div>
     
     </div>
+    </Element>
+    
      
    
   );

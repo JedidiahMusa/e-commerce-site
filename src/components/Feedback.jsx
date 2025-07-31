@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Element } from 'react-scroll';
 
 
 function Feedback() {
@@ -51,7 +52,8 @@ function Feedback() {
   ];
 
   return (
-    <div className="w-full px-4 md:px-12 lg:px-20 py-10 ">
+    <Element name="feedback">
+        <div className="w-full px-4 md:px-12 lg:px-20 py-10 ">
       {/* Header and arrows */}
       <div className="flex items-center justify-between mb-6">
         <p className="font-[Montserrat] font-extrabold text-3xl md:text-4xl">
@@ -89,7 +91,9 @@ function Feedback() {
         ))}
       </Slider>
     </div>
-  );
-}
+ 
+    </Element>
+  
+ );}
 
 export default Feedback;
