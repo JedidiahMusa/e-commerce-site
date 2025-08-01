@@ -15,7 +15,7 @@ function Feedback() {
     dots: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: false, // hide built-in arrows
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
