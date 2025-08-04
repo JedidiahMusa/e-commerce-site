@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { IoIosSearch, IoMdClose, IoIosClose } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Hamburger from "hamburger-react";
-import { Link } from 'react-scroll';
+import { Link } from "react-scroll";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isTop, setIsTop] = useState(true);
 
-  function handleOpen() {
-    setIsOpen(!isOpen);
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        setIsTop(false);
+      } else {
+        setIsTop(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   return (
-    <div className=" top-0 sticky z-50 h-20 flex bg-gray-200 items-center justify-center">
+    <div className=" top-0 sticky z-50 h-20 flex items-center justify-center">
       <nav
         className={
           nav
-            ? "w-[90%] flex-col  h-17 flex z-30 bg-white items-center border-1 border-gray-200 justify-between rounded-tr-3xl rounded-tl-3xl"
-            : "w-[90%]  rounded-full h-17 flex z-30 bg-white border-1 border-gray-200"
+            ? `w-[90%] flex-col h-17 flex z-30 items-center border border-gray-200 justify-between md:rounded-full rounded-tr-3xl rounded-tl-3xl ${
+                isTop ? "w-full h-20" : "bg-white shadow-lg"
+              }`
+            : `w-[90%] rounded-full h-17 flex z-30 border border-gray-200 ${
+                isTop ? "w-full h-20 border-0 bg-white rounded-none" : "bg-white shadow-lg"
+              }`
         }
       >
         <div className="w-full px-2 flex justify-between items-center ">
@@ -37,15 +50,28 @@ function Navbar() {
 
           <ul className="md:flex md:text-[.75rem] gap-2 font-semibold w-[20rem] hidden items-center justify-evenly">
             {/* nav-links */}
-             <Link to="home" smooth={true} duration={500} offset={-70}>Home</Link>
-             <Link to="cards" smooth={true} duration={500} offset={-70} className="flex items-center h-full justify-between">
+            <Link to="home" smooth={true} duration={500} offset={-70}>
+              Home
+            </Link>
+            <Link
+              to="cards"
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="flex items-center h-full justify-between"
+            >
               Shop
               <RiArrowDropDownLine size={20} className="hover:cursor-pointer" />
             </Link>
-            <Link to="cards" smooth={true} duration={500} offset={-70}>On Sale</Link>
-             <Link to="browse" smooth={true} duration={500} offset={-70}>Browse</Link>
-             <Link to="feedback" smooth={true} duration={500} offset={-70}>Feedbacks</Link>
-             
+            <Link to="cards" smooth={true} duration={500} offset={-70}>
+              On Sale
+            </Link>
+            <Link to="browse" smooth={true} duration={500} offset={-70}>
+              Browse
+            </Link>
+            <Link to="feedback" smooth={true} duration={500} offset={-70}>
+              Feedbacks
+            </Link>
           </ul>
 
           <div className="md:flex hidden flex-1 mx-6 h-full py-4 items-center justify-end">
@@ -68,18 +94,59 @@ function Navbar() {
           </div>
         </div>
 
-        <div className={nav ? "w-full" : "hidden"}>
-          <div className="flex sticky top-0 border-b-1 bg-white w-full rounded-3xl ">
+        <div className={nav ? "w-full md:hidden" : "hidden"}>
+          <div className="flex sticky top-0 border-b-2 border-[#bababacc] bg-white w-full rounded-3xl ">
             <ul className="flex w-full font-semibold  text-black text-lg flex-col items-center mt-2">
               {/* nav-links */}
-              <Link className="p-5 w-full border-b-1  border-[#313131cc]" to="home" smooth={true} duration={500} offset={-70}>Home</Link>
-             <Link to="cards" smooth={true} duration={500} offset={-70} className="p-5 w-full border-b-1 flex items-center gap-2 border-[#313131cc]">
-              Shop
-              <RiArrowDropDownLine size={30} className="hover:cursor-pointer" />
-            </Link>
-            <Link className="p-5 w-full border-b-1  border-[#313131cc]" to="cards" smooth={true} duration={500} offset={-70}>On Sale</Link>
-             <Link className="p-5 w-full border-b-1  border-[#313131cc]" to="browse" smooth={true} duration={500} offset={-70}>Browse</Link>
-             <Link className="p-5 w-full  border-[#545454cc]" to="feedback" smooth={true} duration={500} offset={-70}>Feedbacks</Link>
+              <Link
+                className="p-5 w-full border-b-2  border-[#ddddddcc]"
+                to="home"
+                smooth={true}
+                duration={500}
+                offset={-70}
+              >
+                Home
+              </Link>
+              <Link
+                to="cards"
+                smooth={true}
+                duration={500}
+                offset={-70}
+                className="p-5 w-full flex items-center gap-2 border-b-2  border-[#ddddddcc]"
+              >
+                Shop
+                <RiArrowDropDownLine
+                  size={30}
+                  className="hover:cursor-pointer"
+                />
+              </Link>
+              <Link
+                className="p-5 w-full border-b-2  border-[#ddddddcc]"
+                to="cards"
+                smooth={true}
+                duration={500}
+                offset={-70}
+              >
+                On Sale
+              </Link>
+              <Link
+                className="p-5 w-full border-b-2  border-[#ddddddcc]"
+                to="browse"
+                smooth={true}
+                duration={500}
+                offset={-70}
+              >
+                Browse
+              </Link>
+              <Link
+                className="p-5 w-full "
+                to="feedback"
+                smooth={true}
+                duration={500}
+                offset={-70}
+              >
+                Feedbacks
+              </Link>
             </ul>
           </div>
         </div>
