@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { IoIosSearch, IoMdClose, IoIosClose } from "react-icons/io";
@@ -9,6 +9,7 @@ import { Link } from "react-scroll";
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isTop, setIsTop] = useState(true);
+  const navRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +23,21 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+  function handleClickOutside(e) {
+    if (nav && navRef.current && !navRef.current.contains(e.target)) {
+      setNav(false);
+    }
+  }
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, [nav]);
+
 
   return (
     <div className=" top-0 sticky z-50 h-20 flex items-center justify-center">
       <nav
+      ref={navRef}
         className={
           nav
             ? `w-[90%] flex-col h-17 flex z-30 items-center border border-gray-200 justify-between md:rounded-full rounded-tr-3xl rounded-tl-3xl ${
@@ -69,7 +81,7 @@ function Navbar() {
             <Link to="browse" smooth={true} duration={500} offset={-70}>
               Browse
             </Link>
-            <Link to="feedback" smooth={true} duration={500} offset={-70}>
+            <Link  to="feedback" smooth={true} duration={500} offset={-70}>
               Feedbacks
             </Link>
           </ul>
@@ -104,6 +116,7 @@ function Navbar() {
                 smooth={true}
                 duration={500}
                 offset={-70}
+                onClick={() => setNav(false)}
               >
                 Home
               </Link>
@@ -111,6 +124,7 @@ function Navbar() {
                 to="cards"
                 smooth={true}
                 duration={500}
+                onClick={() => setNav(false)}
                 offset={-70}
                 className="p-5 w-full flex items-center gap-2 border-b-2  border-[#ddddddcc]"
               >
@@ -125,6 +139,7 @@ function Navbar() {
                 to="cards"
                 smooth={true}
                 duration={500}
+                onClick={() => setNav(false)}
                 offset={-70}
               >
                 On Sale
@@ -134,6 +149,7 @@ function Navbar() {
                 to="browse"
                 smooth={true}
                 duration={500}
+                onClick={() => setNav(false)}
                 offset={-70}
               >
                 Browse
@@ -143,6 +159,7 @@ function Navbar() {
                 to="feedback"
                 smooth={true}
                 duration={500}
+                onClick={() => setNav(false)}
                 offset={-70}
               >
                 Feedbacks
