@@ -121,10 +121,16 @@ function Cards() {
     },
   ];
   const [ratings, setRatings] = useState(Array(cardData.length).fill(0));
+  const [ratings2, setRatings2] = useState(Array(cardData2.length).fill(0));
   const handleRatingChange = (index, newValue) => {
     const updatedRatings = [...ratings];
     updatedRatings[index] = newValue;
     setRatings(updatedRatings);
+  };
+  const handleRatingChange2 = (index, newValue) => {
+    const updatedRatings2 = [...ratings2];
+    updatedRatings2[index] = newValue;
+    setRatings2(updatedRatings2);
   };
 
   return (
@@ -216,16 +222,16 @@ function Cards() {
                     <div className=" flex gap-2 ">
                       <div className="mt-2 flex items-center gap-2">
                         <Rating
-                          name={`rating-${index}`}
-                          value={ratings[index]}
+                          name={`rating2-${index}`}
+                          value={ratings2[index]}
                           size="small"
                           precision={0.5}
                           onChange={(event, newValue) =>
-                            handleRatingChange(index, newValue)
+                            handleRatingChange2(index, newValue)
                           }
                         />
                         <p className="text-[.8rem] text-gray-600">
-                          {ratings[index]}/5
+                          {ratings2[index]}/5
                         </p>
                       </div>
                     </div>

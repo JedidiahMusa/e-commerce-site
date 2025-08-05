@@ -41,14 +41,14 @@ function Navbar() {
         className={
           nav
             ? `w-[90%] flex-col h-17 flex z-30 items-center border border-gray-200 justify-between md:rounded-full rounded-tr-3xl rounded-tl-3xl ${
-                isTop ? "w-full h-20" : "bg-white shadow-lg"
+                isTop ? "w-full  h-20" : "bg-white shadow-lg"
               }`
             : `w-[90%] rounded-full h-17 flex z-30 border border-gray-200 ${
-                isTop ? "w-full h-20 border-0 bg-white rounded-none" : "bg-white shadow-lg"
+                isTop ? "w-full h-20 border-b-1 border-0 bg-white rounded-none" : "bg-white shadow-lg"
               }`
         }
       >
-        <div className="w-full px-2 flex justify-between items-center ">
+        <div className="w-full px-2 gap- md:gap-0 flex justify-between items-center ">
           <div className="flex items-center gap-4 transition ease-in-out duration-500 md:ml-12 md:mr-4 justify-center h-full">
             {/* nav-logo */}
             <div className="md:hidden">

@@ -8,10 +8,10 @@ function Hero() {
   return (
     <Element name="home">
       
-      <div className="w-full pl-[1rem] min-h-[70vh] bg-gray-200 md:pl-[3rem] lg:pl-[5rem] ">
+      <div className="w-full pl-[1rem] bg-gray-200 md:pl-[3rem] lg:pl-[5rem] ">
       <div className="bg-gray-200 overflow-x-hidden md:grid grid-cols-2 h-full w-full">
       <div className="w-full flex flex-col justify-between h-full md:items-start md:col-span-1">
-        <div className="text-5xl text-start md:text-6xl lg:text-7xl font-[Montserrat] font-extrabold xl:mt-8 mx-4 pt-6">
+        <div className="text-5xl text-start lg:text-7xl font-[Montserrat] font-extrabold xl:mt-8 mx-4 pt-6">
            <h1>
           FIND CLOTHES
         </h1>
