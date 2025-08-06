@@ -26,7 +26,7 @@ function Items() {
   };
 
   return (
-    <div className="w-full py-10 min-h-screen px-4 md:px-12 lg:px-16">
+    <div className="w-full py-10 min-h-screen overflow-x-hidden px-4 md:px-12 lg:px-16">
       <div className="w-full gap-8 md:grid grid-cols-2">
         {/* Left section */}
         <div className="w-full md:pb-0 gap-4 pb-6 md:flex md:flex-row-reverse">
@@ -103,7 +103,7 @@ function Items() {
                 <div
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`p-2 px-4 rounded-3xl cursor-pointer transition-all duration-200 ${
+                  className={`p-2 px-3 rounded-3xl cursor-pointer transition-all duration-200 ${
                     selectedSize === size
                       ? "bg-black text-white"
                       : "bg-gray-200 text-black"

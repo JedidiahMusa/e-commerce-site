@@ -38,7 +38,7 @@ function Navbar() {
 
 
   return (
-    <div className=" top-0 sticky z-50 h-20 flex items-center justify-center">
+    <div className="top-0 sticky z-50 h-20 flex items-center justify-center">
       <nav
       ref={navRef}
         className={
@@ -58,7 +58,7 @@ function Navbar() {
               <Hamburger toggled={nav} toggle={setNav} />
             </div>
 
-            <h1 className="font-extrabold font-[Montserrat] text-4xl">
+            <h1 className="font-extrabold font-[Montserrat] text-3xl md:text-4xl">
               SHOP.CO
             </h1>
           </div>
@@ -101,11 +101,11 @@ function Navbar() {
             />
           </div>
 
-          <div className=" flex items-center mr-6 md:mr-12 gap-4 justify-end">
+          <div className=" flex items-center mr-6 md:mr-12 gap-3 md:gap-4 justify-end">
             {/* nav-icons */}
-            <IoIosSearch size={30} className="hover:cursor-pointer md:hidden" />
-            <LuShoppingCart size={24} className="hover:cursor-pointer" />
-            <CgProfile size={24} className="hover:cursor-pointer" />
+            <IoIosSearch className="hover:cursor-pointer text-[1.5rem] md:hidden" />
+            <LuShoppingCart className="hover:cursor-pointer text-[1.3rem] md:text-[1.5rem]" />
+            <CgProfile className="hover:cursor-pointer text-[1.3rem] md:text-[1.5rem]" />
           </div>
         </div>
 

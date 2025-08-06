@@ -144,15 +144,15 @@ function Cards() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
           {(viewAll ? cardData : cardData.slice(0, cardsPerRow)).map(
             (card, index) => (
-              <Link to={"/items"} key={index} className="h-full w-full">
+              <div key={index} className="h-full w-full">
                 <div className=" flex flex-col h-full ">
-                  <div className="h-[15rem] group overflow-hidden md:h-[18rem] flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full ">
+                  <Link to={"/items"} className="h-[15rem] group overflow-hidden md:h-[18rem] flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full ">
                     <img
                       src={card.img}
                       alt=""
                       className="object-contain group-hover:scale-125 transition ease-in-out duration-700 h-full w-full "
                     />
-                  </div>
+                  </Link>
                   
 
                   <div className="flex p-2 flex-col ">
@@ -178,7 +178,7 @@ function Cards() {
                     </p>
                   </div>
                 </div>
-              </Link>
+              </div>
             )
           )}
         </div>
