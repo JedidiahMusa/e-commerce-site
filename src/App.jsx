@@ -5,13 +5,16 @@ import MarqueeSec from "./components/MarqueeSec";
 import Feedback from "./components/Feedback";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop"
 import { Routes, Route } from "react-router-dom";
 import Items from "./pages/Items";
 
 function App() {
   return (
     <>
+
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"
@@ -25,7 +28,7 @@ function App() {
             </>
           }
         />
-        <Route path="/items" element={<Items />} />
+        <Route id="items" path="/items" element={<Items />} />
       </Routes>
       <Footer />
     </>

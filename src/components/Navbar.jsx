@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import { IoIosSearch, IoMdClose, IoIosClose } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Hamburger from "hamburger-react";
 import { Link } from "react-scroll";
+import { Link as RouteLink } from "react-router-dom";
+
 
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const navRef = useRef(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,16 +113,16 @@ function Navbar() {
           <div className="flex sticky top-0 border-b-2 border-[#bababacc] bg-white w-full rounded-3xl ">
             <ul className="flex w-full font-semibold  text-black text-lg flex-col items-center mt-2">
               {/* nav-links */}
-              <Link
+              <RouteLink
                 className="p-5 w-full border-b-2  border-[#ddddddcc]"
-                to="home"
+                to={"/"}
                 smooth={true}
                 duration={500}
                 offset={-70}
-                onClick={() => setNav(false)}
+                onClick={() => (setNav(false))}
               >
                 Home
-              </Link>
+              </RouteLink>
               <Link
                 to="cards"
                 smooth={true}

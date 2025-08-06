@@ -10,6 +10,11 @@ function Items() {
   const [selectedImage, setSelectedImage] = useState(jorts); // default image
   const [selectedSize, setSelectedSize] = useState("Small"); // default image
   const [number, setNumber] = useState(1);
+  const basePrice = 87; 
+  const discount = 0.68;  
+  const finalPrice = basePrice * (1 - discount);
+  const totalPrice = finalPrice * number;
+  const discountPercent = discount * 100;
 
 
   const increment = () => {
@@ -17,7 +22,7 @@ function Items() {
   };
 
   const decrement = () => {
-    setNumber((prev) => (prev > 0 ? prev - 1 : 0)); // prevents negative values
+    setNumber((prev) => (prev > 0 ? prev - 1 : 0));
   };
 
   return (
@@ -64,12 +69,12 @@ function Items() {
           </p>
           <Rating name="User Rating" readOnly value={ratings} size="medium" />
           <div className="flex gap-4">
-            <p className="text-3xl my-1 font-semibold">$100</p>
+            <p className="text-3xl my-1 font-semibold">${totalPrice.toFixed(2)}</p>
             <p className="text-3xl line-through text-gray-400 my-1 font-semibold">
-              $50
+              ${(basePrice * number).toFixed(2)}
             </p>
             <p className="px-10 bg-red-100 flex items-center justify-center w-12 rounded-3xl text-red-400 my-1 font-semibold">
-              -50%
+              -{discountPercent}%
             </p>
           </div>
 
@@ -118,10 +123,20 @@ function Items() {
               <p>{number}</p>
               <p className="text-4xl cursor-pointer" onClick={increment}>+</p>
             </div>
-            <div className="bg-black flex-1 h-13 flex rounded-4xl items-center px-4 justify-center text-white">Add to Cart</div>
+            <div className="bg-black flex-1 h-13 cursor-pointer flex rounded-4xl items-center px-4 justify-center text-white">Add to Cart</div>
           </div>
         </div>
       </div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
     </div>
   );
 }

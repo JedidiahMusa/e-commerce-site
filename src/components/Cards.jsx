@@ -1,4 +1,3 @@
-import React from "react";
 import shirt from "../assets/shirt.png";
 import jeans from "../assets/jeans.png";
 import sweater from "../assets/sweater.png";
@@ -17,6 +16,7 @@ import retro from "../assets/retro.png";
 import sweatshort from "../assets/sweatshort.png";
 import { useState, useEffect } from "react";
 import { Element } from 'react-scroll';
+import { Link } from "react-router-dom";
 
 function Cards() {
   const [viewAll, setViewAll] = useState(false);
@@ -144,7 +144,7 @@ function Cards() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
           {(viewAll ? cardData : cardData.slice(0, cardsPerRow)).map(
             (card, index) => (
-              <div key={index} className="h-full w-full">
+              <Link to={"/items"} key={index} className="h-full w-full">
                 <div className=" flex flex-col h-full ">
                   <div className="h-[15rem] group overflow-hidden md:h-[18rem] flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full ">
                     <img
@@ -178,7 +178,7 @@ function Cards() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           )}
         </div>
@@ -194,10 +194,6 @@ function Cards() {
         <div className="h-[1px] w-full bg-gray-300 "></div>
       </div>
       
-
-
-
-
 
       <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
         <div className="flex items-center my-8 justify-center">
