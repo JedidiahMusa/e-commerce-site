@@ -15,6 +15,7 @@ function Items() {
   const finalPrice = basePrice * (1 - discount);
   const totalPrice = finalPrice * number;
   const discountPercent = discount * 100;
+  
 
 
   const increment = () => {
