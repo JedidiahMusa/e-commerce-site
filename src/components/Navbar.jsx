@@ -1,18 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { IoIosSearch } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Hamburger from "hamburger-react";
+import { useWindowScroll } from "react-use";
 import { Link } from "react-scroll";
 import { Link as RouteLink } from "react-router-dom";
+import gsap from "gsap";
 
 
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const navRef = useRef(null);
+  const { y: currentScrollY } = useWindowScroll();
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavVisible, setIsNavVisible] = useState(true);
 
+
+   useEffect(() => {
+      if (currentScrollY === 0) {
+        setIsNavVisible(true);
+        navRef.current.classList.remove("floating-nav");
+      } else if (currentScrollY > lastScrollY) {
+        setIsNavVisible(false);
+        navRef.current.classList.add("floating-nav");
+      } else if (currentScrollY < lastScrollY) {
+        setIsNavVisible(true);
+        navRef.current.classList.add("floating-nav");
+      }
+      setLastScrollY(currentScrollY);
+    }, [currentScrollY, lastScrollY]);
+useEffect(() => {
+  if (currentScrollY <= 75) return; // Skip animation at top
+
+  gsap.to(navRef.current, {
+    y: isNavVisible ? 0 : -100,
+    opacity: isNavVisible ? 1 : 0,
+    duration: 0.5,
+    ease: "power2.out",
+  });
+}, [isNavVisible, currentScrollY]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +63,7 @@ function Navbar() {
   }
   document.addEventListener("mousedown", handleClickOutside);
   return () => document.removeEventListener("mousedown", handleClickOutside);
-}, [nav]);
+}, [nav]); 
 
 
   return (
