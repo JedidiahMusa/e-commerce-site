@@ -3,6 +3,7 @@ import jorts from "../assets/jorts.png";
 import jorts2 from "../assets/jeans.png";
 import jorts3 from "../assets/jorts3.png";
 import Rating from "@mui/material/Rating";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 
 function Items() {
   const [ratings] = useState(5);
@@ -17,6 +18,25 @@ function Items() {
   const discountPercent = discount * 100;
   
 
+  const feedBackData = [
+    {
+      name: "Alex K.",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      name: "Sarah M.",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      name: "James L.",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      name: "Mona D.",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    
+  ];
 
   const increment = () => {
     setNumber((prev) => prev + 1);
@@ -127,14 +147,24 @@ function Items() {
             <div className="bg-black flex-1 h-13 cursor-pointer flex rounded-4xl items-center px-4 justify-center text-white">Add to Cart</div>
           </div>
         </div>
+
+
       </div>
 
 
 
-
-      <div>
-        
-      </div>
+      {feedBackData.map((item, index) => (
+          <div key={index} className="p-3">
+            <div className="border hover:scale-105 transition ease-in-out duration-1000 rounded-3xl h-[17rem] px-8 pt-8 border-gray-300 bg-white shadow-sm">
+              <Rating name="User Rating" readOnly value={ratings} size="small" />
+              <p className="font-bold py-4 flex gap-2 items-center">
+                {item.name}
+                <RiVerifiedBadgeFill className="text-green-500" />
+              </p>
+              <p className="text-[.85rem] text-gray-500">{item.text}</p>
+            </div>
+          </div>
+        ))}
 
 
 
