@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Element } from 'react-scroll';
 
-
 function Feedback() {
   const sliderRef = useRef();
   const [ratings] = useState(5);
