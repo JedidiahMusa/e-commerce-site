@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop"
 import { Routes, Route } from "react-router-dom";
 import Items from "./pages/Items";
+import Cart from "./pages/Cart";
+
+
 
 function App() {
   return (
@@ -21,14 +24,15 @@ function App() {
           element={
             <>
               <Hero />
-              <MarqueeSec />
+              
               <Cards />
               <Browse />
               <Feedback />
             </>
           }
         />
-        <Route id="items" path="/items" element={<Items />} />
+        <Route path="/items/:id" element={<Items />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </>

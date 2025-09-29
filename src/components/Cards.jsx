@@ -1,27 +1,49 @@
-import shirt from "../assets/shirt.png";
-import jeans from "../assets/jeans.png";
-import sweater from "../assets/sweater.png";
-import Rating from "@mui/material/Rating";
-import vest from "../assets/vest.png";
-import tank from "../assets/tank.png";
-import hoodie from "../assets/hoodie.png";
-import ribbed from "../assets/ribbed.png";
-import jacket from "../assets/jacket.png";
-import jersey from "../assets/jersey.png";
-import stripes from "../assets/stripes.png";
-import colar from "../assets/colar.png";
-import jorts from "../assets/jorts.png";
-import baseball from "../assets/baseball.png";
-import retro from "../assets/retro.png";
-import sweatshort from "../assets/sweatshort.png";
 import { useState, useEffect } from "react";
-import { Element } from 'react-scroll';
+import Rating from "@mui/material/Rating";
+import { Element } from "react-scroll";
 import { Link } from "react-router-dom";
 
 function Cards() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [viewAll, setViewAll] = useState(false);
-  const [viewAll2, setViewAll2] = useState(false);
   const [cardsPerRow, setCardsPerRow] = useState(2);
+
+  const [ratings, setRatings] = useState([]);
+
+  // Fetch + filter categories
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("https://fakestoreapi.com/products");
+        const all = await res.json();
+
+        // Only clothes, jewelry, and simulated shoes
+        const filtered = all.filter(
+          (item) =>
+            item.category === "men's clothing" ||
+            item.category === "women's clothing" ||
+            item.category === "jewelery" ||
+            item.title.toLowerCase().includes("shoe") ||
+            item.title.toLowerCase().includes("sneaker") ||
+            item.title.toLowerCase().includes("boot")
+        );
+
+        setProducts(filtered);
+        setRatings(Array(filtered.length).fill(0));
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Responsive grid logic
   useEffect(() => {
     const updateCardsPerRow = () => {
       const width = window.innerWidth;
@@ -41,140 +63,60 @@ function Cards() {
 
     return () => window.removeEventListener("resize", updateCardsPerRow);
   }, []);
-  const cardData = [
-    {
-      img: shirt,
-      title: "T-Shirt",
-      price: "$120",
-    },
-    {
-      img: jeans,
-      title: "Jeans",
-      price: "$100",
-    },
-    {
-      img: sweater,
-      title: "Swaeater",
-      price: "$200",
-    },
-    {
-      img: vest,
-      title: "Vest",
-      price: "$90",
-    },
-    {
-      img: jacket,
-      title: "Jacket",
-      price: "$140",
-    },
-    {
-      img: jersey,
-      title: "Jersey",
-      price: "$70",
-    },
-    {
-      img: baseball,
-      title: "Baseball Jersey",
-      price: "$79",
-    },
-    {
-      img: sweatshort,
-      title: "Sweat Short",
-      price: "$43",
-    },
-    {
-      img: retro,
-      title: "Retro Jersey",
-      price: "$90",
-    },
-  ];
-  const cardData2 = [
-    {
-      img: tank,
-      title: "Tank Top",
-      price: "$40",
-    },
-    {
-      img: ribbed,
-      title: "Ribbed Top",
-      price: "$20",
-    },
-    {
-      img: hoodie,
-      title: "Hoodie",
-      price: "$130",
-    },
-    {
-      img: colar,
-      title: "Colared Shirt",
-      price: "$230",
-    },
-    {
-      img: stripes,
-      title: "Stripe Sweater",
-      price: "$120",
-    },
-    {
-      img: jorts,
-      title: "Jorts",
-      price: "$55",
-    },
-  ];
-  const [ratings, setRatings] = useState(Array(cardData.length).fill(0));
-  const [ratings2, setRatings2] = useState(Array(cardData2.length).fill(0));
+
   const handleRatingChange = (index, newValue) => {
-    const updatedRatings = [...ratings];
-    updatedRatings[index] = newValue;
-    setRatings(updatedRatings);
+    const updated = [...ratings];
+    updated[index] = newValue;
+    setRatings(updated);
   };
-  const handleRatingChange2 = (index, newValue) => {
-    const updatedRatings2 = [...ratings2];
-    updatedRatings2[index] = newValue;
-    setRatings2(updatedRatings2);
-  };
+
+  if (loading) {
+    return <p className="text-center py-10">Loading products...</p>;
+  }
 
   return (
-    <>
     <Element name="cards">
-        <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
+      <div className="w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
         <div className="flex items-center my-8 justify-center">
-          <p className="font-extrabold text-4xl font-[Montserrat] ">NEW ARRIVALS</p>
+          <p className="font-extrabold text-4xl font-[Montserrat]">
+            FEATURED PRODUCTS
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
-          {(viewAll ? cardData : cardData.slice(0, cardsPerRow)).map(
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {(viewAll ? products : products.slice(0, cardsPerRow)).map(
             (card, index) => (
-              <div key={index} className="h-full w-full">
-                <div className=" flex flex-col h-full ">
-                  <Link to={"/items"} className="h-[15rem] group overflow-hidden md:h-[18rem] flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full ">
+              <div key={card.id} className="h-full w-full">
+                <div className="flex flex-col h-full">
+                  <Link
+                    to={`/items/${card.id}`}
+                    className="h-[15rem] md:h-[18rem] group overflow-hidden flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full"
+                  >
                     <img
-                      src={card.img}
-                      alt=""
-                      className="object-contain group-hover:scale-125 transition ease-in-out duration-700 h-full w-full "
+                      src={card.image}
+                      alt={card.title}
+                      className="object-contain group-hover:scale-125 transition ease-in-out duration-700 h-full w-full"
                     />
                   </Link>
-                  
 
-                  <div className="flex p-2 flex-col ">
-                    <p className="font-bold ">{card.title}</p>
-                    <div className=" flex gap-2 ">
-                      <div className="mt-2 flex items-center gap-2">
-                        <Rating
-                          name={`rating-${index}`}
-                          value={ratings[index]}
-                          size="small"
-                          precision={0.5}
-                          onChange={(event, newValue) =>
-                            handleRatingChange(index, newValue)
-                          }
-                        />
-                        <p className="text-[.8rem] text-gray-600">
-                          {ratings[index]}/5
-                        </p>
-                      </div>
+                  <div className="flex p-2 flex-col">
+                    <p className="font-bold line-clamp-2">{card.title}</p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <Rating
+                        name={`rating-${index}`}
+                        value={ratings[index]}
+                        size="small"
+                        precision={0.5}
+                        onChange={(event, newValue) =>
+                          handleRatingChange(index, newValue)
+                        }
+                      />
+                      <p className="text-[.8rem] text-gray-600">
+                        {ratings[index]}/5
+                      </p>
                     </div>
-                    <p className="mt-2 text-[1.2rem] font-bold ">
-                      {card.price}
+                    <p className="mt-2 text-[1.2rem] font-bold">
+                      ${card.price}
                     </p>
                   </div>
                 </div>
@@ -191,68 +133,8 @@ function Cards() {
             {viewAll ? "View Less" : "View More"}
           </button>
         </div>
-        <div className="h-[1px] w-full bg-gray-300 "></div>
-      </div>
-      
-
-      <div className=" w-full px-[1rem] md:px-[3rem] lg:px-[5rem]">
-        <div className="flex items-center my-8 justify-center">
-          <p className="font-extrabold text-4xl font-[Montserrat] ">TOP SELLING</p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full overflow-x-hidden gap-4">
-          {(viewAll2 ? cardData2 : cardData2.slice(0, cardsPerRow)).map(
-            (card, index) => (
-              <div key={index} className="h-full w-full">
-                <div className=" flex flex-col h-full ">
-                  <div className="h-[15rem] md:h-[18rem] group flex items-center justify-center object-contain rounded-3xl bg-gray-200 w-full ">
-                    <img
-                      src={card.img}
-                      alt=""
-                      className="object-contain group-hover:scale-125 transition ease-in-out duration-700 h-full w-full "
-                    />
-                  </div>
-
-                  <div className="flex p-2 flex-col ">
-                    <p className="font-bold ">{card.title}</p>
-                    <div className=" flex gap-2 ">
-                      <div className="mt-2 flex items-center gap-2">
-                        <Rating
-                          name={`rating2-${index}`}
-                          value={ratings2[index]}
-                          size="small"
-                          precision={0.5}
-                          onChange={(event, newValue) =>
-                            handleRatingChange2(index, newValue)
-                          }
-                        />
-                        <p className="text-[.8rem] text-gray-600">
-                          {ratings2[index]}/5
-                        </p>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-[1.2rem] font-bold ">
-                      {card.price}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )
-          )}
-        </div>
-
-        <div className="w-full my-8 flex justify-center">
-          <button
-            onClick={() => setViewAll2(!viewAll2)}
-            className="flex items-center font-semibold text-[.9rem] hover:border-gray-500 transition ease-in-out duration-300 hover:scale-105 justify-center p-2 w-[10rem] md:w-[12rem] border-1 border-gray-300 rounded-full"
-          >
-            {viewAll2 ? "View Less" : "View More"}
-          </button>
-        </div>
       </div>
     </Element>
-    
-    </>
   );
 }
 

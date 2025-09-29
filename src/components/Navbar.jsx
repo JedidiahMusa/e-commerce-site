@@ -4,44 +4,16 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosSearch } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Hamburger from "hamburger-react";
-import { useWindowScroll } from "react-use";
 import { Link } from "react-scroll";
 import { Link as RouteLink } from "react-router-dom";
-import gsap from "gsap";
-
+import { useCart } from "../context/CartContext"; // adjust path if needed
 
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const navRef = useRef(null);
-  const { y: currentScrollY } = useWindowScroll();
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-
-
-   useEffect(() => {
-      if (currentScrollY === 0) {
-        setIsNavVisible(true);
-        navRef.current.classList.remove("floating-nav");
-      } else if (currentScrollY > lastScrollY) {
-        setIsNavVisible(false);
-        navRef.current.classList.add("floating-nav");
-      } else if (currentScrollY < lastScrollY) {
-        setIsNavVisible(true);
-        navRef.current.classList.add("floating-nav");
-      }
-      setLastScrollY(currentScrollY);
-    }, [currentScrollY, lastScrollY]);
-useEffect(() => {
-  if (currentScrollY <= 75) return; // Skip animation at top
-
-  gsap.to(navRef.current, {
-    y: isNavVisible ? 0 : -100,
-    opacity: isNavVisible ? 1 : 0,
-    duration: 0.5,
-    ease: "power2.out",
-  });
-}, [isNavVisible, currentScrollY]);
+  const { cart } = useCart();
+  const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,27 +28,29 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-  function handleClickOutside(e) {
-    if (nav && navRef.current && !navRef.current.contains(e.target)) {
-      setNav(false);
+    function handleClickOutside(e) {
+      if (nav && navRef.current && !navRef.current.contains(e.target)) {
+        setNav(false);
+      }
     }
-  }
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => document.removeEventListener("mousedown", handleClickOutside);
-}, [nav]); 
-
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [nav]);
 
   return (
-    <div className="top-0 sticky z-50 h-20 flex items-center justify-center">
+   <div className="sticky top-0 left-0 w-full z-50 flex items-center justify-center">
+
       <nav
-      ref={navRef}
+        ref={navRef}
         className={
           nav
             ? `w-[90%] flex-col h-17 flex z-30 items-center border border-gray-200 justify-between md:rounded-full rounded-tr-3xl rounded-tl-3xl ${
                 isTop ? "w-full  h-20" : "bg-white shadow-lg"
               }`
             : `w-[90%] rounded-full h-17 flex z-30 border border-gray-200 ${
-                isTop ? "w-full h-20 border-b-1 border-0 bg-white rounded-none" : "bg-white shadow-lg"
+                isTop
+                  ? "w-full h-20 border-b-1 border-0 bg-white rounded-none"
+                  : "bg-white shadow-lg"
               }`
         }
       >
@@ -88,15 +62,14 @@ useEffect(() => {
             </div>
 
             <h1 className="font-extrabold font-[Montserrat] text-3xl md:text-4xl">
-              SHOP.CO
+              <a href="/">SHOP.CO</a>
             </h1>
           </div>
 
           <ul className="md:flex md:text-[.75rem] gap-2 font-semibold w-[20rem] hidden items-center justify-evenly">
             {/* nav-links */}
-            <Link to="home" smooth={true} duration={500} offset={-70}>
-              Home
-            </Link>
+            <a href="/">Home</a>
+
             <Link
               to="cards"
               smooth={true}
@@ -113,7 +86,7 @@ useEffect(() => {
             <Link to="browse" smooth={true} duration={500} offset={-70}>
               Browse
             </Link>
-            <Link  to="feedback" smooth={true} duration={500} offset={-70}>
+            <Link to="feedback" smooth={true} duration={500} offset={-70}>
               Feedbacks
             </Link>
           </ul>
@@ -133,22 +106,30 @@ useEffect(() => {
           <div className=" flex items-center mr-6 md:mr-12 gap-3 md:gap-4 justify-end">
             {/* nav-icons */}
             <IoIosSearch className="hover:cursor-pointer text-[1.5rem] md:hidden" />
-            <LuShoppingCart className="hover:cursor-pointer text-[1.3rem] md:text-[1.5rem]" />
+            <div className="relative">
+              <RouteLink to="/cart">
+                <LuShoppingCart className="text-[1.3rem] md:text-[1.5rem] cursor-pointer" />
+              </RouteLink>
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+                  {itemCount}
+                </span>
+              )}
+            </div>
+
+
             <CgProfile className="hover:cursor-pointer text-[1.3rem] md:text-[1.5rem]" />
           </div>
         </div>
 
         <div className={nav ? "w-full md:hidden" : "hidden"}>
           <div className="flex sticky top-0 border-b-2 border-[#bababacc] bg-white w-full rounded-3xl ">
-            <ul className="flex w-full font-semibold  text-black text-lg flex-col items-center mt-2">
+            <ul className="flex w-full font-semibold text-black text-lg flex-col items-center mt-2">
               {/* nav-links */}
               <RouteLink
-                className="p-5 w-full border-b-2  border-[#ddddddcc]"
-                to={"/"}
-                smooth={true}
-                duration={500}
-                offset={-70}
-                onClick={() => (setNav(false))}
+                className="p-5 w-full border-b-2 border-[#ddddddcc]"
+                to="/"
+                onClick={() => setNav(false)}
               >
                 Home
               </RouteLink>
