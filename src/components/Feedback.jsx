@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Element } from 'react-scroll';
 
-
 function Feedback() {
   const sliderRef = useRef();
   const [ratings] = useState(5);
@@ -54,7 +53,7 @@ function Feedback() {
   return (
     <Element name="feedback">
         <div className="w-full px-4 md:px-12 lg:px-20 py-10 ">
-      {/* Header and arrows */}
+      {/* Header and  arrows */}
       <div className="flex items-center justify-between mb-6">
         <p className="font-[Montserrat] font-extrabold text-3xl md:text-4xl">
           OUR HAPPY CUSTOMERS
