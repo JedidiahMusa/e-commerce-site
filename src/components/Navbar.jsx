@@ -50,7 +50,7 @@ function Navbar() {
             : `w-[90%] rounded-full h-17 flex z-30 border border-gray-200 ${
                 isTop
                   ? "w-full h-20 border-b-1 border-0 bg-white rounded-none"
-                  : "bg-white shadow-lg"
+                  : "bg-white mt-4 shadow-lg"
               }`
         }
       >
